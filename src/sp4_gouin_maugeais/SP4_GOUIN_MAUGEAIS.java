@@ -15,6 +15,22 @@ public class SP4_GOUIN_MAUGEAIS {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Jeton Jaune1 = new Jeton("jaune");    // Création des 2 premiers jetons et test de toString
+        System.out.println(Jaune1);
+        
+        Jeton Rouge1 = new Jeton("rouge");
+        System.out.println(Rouge1);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
 }
