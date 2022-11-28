@@ -21,30 +21,28 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
         }
     }
     
-    public int ajouterJetonDansColonne(Jeton jetemp, int col){
+    public int ajouterJetonDansColonne(Jeton jetemp, int col){  //méthode pour ajouter un jeton dans une colonne 
         for(int i = 6; i>=0 ; i--){
-            if (grille[i][col]==null){
-                grille[i][col].affecterJeton(jetemp);
-                break;
+            if (grille[i][col]==null){ // Dès qu'une cellule de la colonne est vide on peut y placer le jeton 
+                grille[i][col].affecterJeton(jetemp);  // Donc on affecte le jeton à la cellule
+                break;    // Puis on sort de la boucle afin de ne pas ajouter le même jeton dans les cellules au dessus
             }
-        return i;
+        return i;  // on retourne la ligne où le jeton a été affecté
             
         }
-        return -1; 
+        return -1; // Si la colonne est pleine on retourne -1 signifiant que la colonne est pleine 
     } 
     
-    public boolean grilleRemplie(){
-        boolean cond = true;
-        for(int i=0; i<6; i++){
-            for(int j=0; j<7; j++){
-                if (grille[i][j]==null){
-                    cond=false;
-                }
+    public boolean grilleRemplie(){  // Méthode qui vérifie si notre grille est totalement remplie ou non 
+        boolean cond = true;  
+        for(int i=0; i<7; i++){  // On vérifie toutes les cellules de notre 1ère ligne
+            if (grille[0][i]==null){ // si une seule cellule est vide
+                cond=false; // alors notre tableau n'est pas complètement plein
             }
-        }
         
-        return cond;   
         }
+       return cond;   // on retourne si notre grille est remplie ou non 
+    }
 
     
 }
