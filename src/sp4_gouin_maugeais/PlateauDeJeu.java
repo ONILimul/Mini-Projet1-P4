@@ -43,7 +43,43 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
         }
        return cond;   // on retourne si notre grille est remplie ou non 
     }
+    public void afficherGrilleSurConsole() {
+        System.out.println(grille.toString());
+    }
 
+    public boolean presenceJeton(int x, int y){
+        return grille[x][y].presenceJeton();
+    }
+    public String lireCouleurDuJeton(int x, int y){
+        return grille[x][y].lireCouleurDuJeton();
+    }
     
+    public boolean ligneGagnantePourCouleur (String couleur) {
+        boolean temp = false;
+        for (int a = 0; a < 6 ;a++){
+            for (int i = 0; i < 3; i++){
+                if ( lireCouleurDuJeton(a,i) == couleur || lireCouleurDuJeton(a,i+1) == couleur || lireCouleurDuJeton(a, i+2) == couleur || lireCouleurDuJeton(a, i+3) == couleur) {
+                    temp = true ;
+                    break;
+                }
+            }   
+        }
+        return temp;
+    }
+    
+    public colonneGagnantePourCouleur (String couleur ) {
+        
+
+            
+    }
+    
+    public diagonaleMontanteGagnantePourCouleur(String couleur) {
+            
+    }
+    
+    public diagonaleDescendanteGagnantePourCouleur(String couleur) {
+            
+    }
+
 }
 

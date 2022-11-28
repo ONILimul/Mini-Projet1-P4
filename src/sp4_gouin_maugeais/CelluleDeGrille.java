@@ -41,7 +41,7 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
             return(jetonCourant.getCouleur());// on retourne la couleur du jeton 
         }
         else{
-            return "vide"; // sinon on retourne vide pour indiquer que la cellule est vide
+            return "."; // sinon on retourne vide pour indiquer que la cellule est vide
         }
     }
     
@@ -86,10 +86,28 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
         supprimerTrouNoir();
     }
    
-   
-}
+   @Override                         //  création de la méthode toString permettant d'identifier ce qui est dans celluleDeGrille
+    public String toString() {
+        if (presenceTrouNoir()== true) {
+            return "@";
+        
+       }else {
+            if(presenceDesintegrateur()== true){
+                return "D" ;
+                
+            }else {
+                if (presenceJeton()== true){
+                    return jetonCourant.toString();
+                }else {
+                    return ".";
+                }
+            }
+        }
+        
+    }
+
     
-    
+}    
 
     
 

@@ -22,6 +22,6 @@ public class SP4_GOUIN_MAUGEAIS {
         Jeton Rouge1 = new Jeton("rouge");
         System.out.println(Rouge1);
         
-         
+        
     }
 }         
