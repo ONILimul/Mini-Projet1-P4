@@ -41,7 +41,7 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
             return(jetonCourant.getCouleur());// on retourne la couleur du jeton 
         }
         else{
-            return "vide"; // sinon on retourne vide pour indiquer que la cellule est vide
+            return "."; // sinon on retourne vide pour indiquer que la cellule est vide
         }
     }
     
@@ -50,12 +50,64 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
         temp = jetonCourant ;
         jetonCourant = null ;
         return temp;
+    }
         
+    public void placerTrouNoir(){           //place un trou noir dans la cellule
+        avoirTrouNoir=true;
+    }
+    
+    public void supprimerTrouNoir(){     //supprime trou noir de la cellule
+        avoirTrouNoir=false;
+    }
+    
+    public boolean presenceTrouNoir(){    // Vérifie la présence d'un trou noir dans la cellule
+        return avoirTrouNoir;
         
     }
+    
+    public void supprimerJeton(){    // Supprime le jeton dans la cellule
+        jetonCourant=null;
+    }
+    
+    public boolean presenceDesintegrateur(){  // Vérifie la présence de désintégrateur dans la cellule
+        return avoirDesintegrateur; 
+    } 
+    
+    public void placerDesintegrateur(){  // Place un Désintégrateur dans la cellule
+        avoirDesintegrateur = true ; 
+    }
+    
+    public void supprimerDesintegrateur(){   // Supprime le désintégrateur présent dans la cellule
+        avoirDesintegrateur = false ; 
+    }
+  
+    public void activerTrouNoir(){   // Active le trou noir présent dans la cellule en supprimant le jeton et lui même de la cellule
+        supprimerJeton();
+        supprimerTrouNoir();
+    }
+   
+   @Override                         //  création de la méthode toString permettant d'identifier ce qui est dans celluleDeGrille
+    public String toString() {
+        if (presenceTrouNoir()== true) {
+            return "@";
+        
+       }else {
+            if(presenceDesintegrateur()== true){
+                return "D" ;
+                
+            }else {
+                if (presenceJeton()== true){
+                    return jetonCourant.toString();
+                }else {
+                    return ".";
+                }
+            }
+        }
+        
+    }
+
+    
 }    
-    
-    
 
     
 
