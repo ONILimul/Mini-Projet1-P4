@@ -29,13 +29,11 @@ public class joueur {
         reserveJetons.add(newJeton);
     }
     
-    int i = 0;
     
-    public int jouerJeton(){    //méthode permettant de retirer un jeton de la réserve du joueur et de renvoyer une référence à celui-ci
+    public Jeton jouerJeton(){    //méthode permettant de retirer un jeton de la réserve du joueur et de renvoyer une référence à celui-ci
         
-        reserveJetons.remove(i);
-        i+=1;
-        return i-1;
+        Jeton j = reserveJetons.remove(0);
+        return j;
       
     }
     public void obtenirDesintegrateur() {   //méthode permettant d'ajouter un desintégrateur

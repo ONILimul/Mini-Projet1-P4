@@ -93,6 +93,40 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     public diagonaleDescendanteGagnantePourCouleur(String couleur) {
             
     }
+    public void tasserLigne(int i) {
+        
+    }
+    int temp0 = 0;
+    public boolean colonneRemplie (int numColonne) {     //methode permettant de savoir si une colonne est remplie de jetons ou non
+        for (int i=0; i <= 6; i++ ){
+            if (grille [i][numColonne].presenceJeton() == true) {
+                temp0 += 1;
+            }
+        }
+        if (temp0 == 7){
+            return true;
+        }
+        else {
+            return false;
+        }
+         
+    }
+    public void placerTrouNoir(int x, int y) {   //méthode permettant de placer un trou noir sur la grille 
+        grille[x][y].placerTrouNoir();
+    }
+    public void supprimerTrouNoir(int x, int y) {   //méthode permettant de supprimer un trou noir sur la grille 
+        grille[x][y].supprimerTrouNoir();
+    }
+    public void placerDesintegrateur(int x, int y) {   //méthode permettant de placer un desintegrateur sur la grille 
+        grille[x][y].placerDesintegrateur();
+    }
+    public void supprimerJeton(int x, int y) {   //méthode permettant de supprimer un Jeton sur la grille 
+        grille[x][y].supprimerJeton();
+    }
+    public Jeton recupererJeton(int x, int y) {  //méthode permettant d'enlever un jeton d'un cellule visée et renvoyant une reference à celui-ci
+        Jeton j = grille[x][y].recupererJeton();
+        return j;
+    }
 
 }
 
