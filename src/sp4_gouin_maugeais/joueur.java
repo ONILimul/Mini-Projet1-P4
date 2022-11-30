@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author gouin
  */
-public class joueur {
+public class joueur { // Création de la classe joueur
     private String nom;
     private String couleur;
     private ArrayList<Jeton> reserveJetons = new ArrayList<Jeton>();

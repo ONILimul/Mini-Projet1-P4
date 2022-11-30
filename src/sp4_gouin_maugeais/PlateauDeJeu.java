@@ -58,6 +58,9 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     public boolean ligneGagnantePourCouleur (String couleur) { // Cette (sous) méthode indique si une couleur que l'on donne est gagnante sur une ligne de notre plateau de jeu ou non 
         boolean temp1 = false;
         for (int a = 0; a < 6 ;a++){
+            if (temp1 == true){
+                break;
+            }            
             for (int i = 0; i <= 3; i++){
                 if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a,i+1) == couleur & lireCouleurDuJeton(a, i+2) == couleur & lireCouleurDuJeton(a, i+3) == couleur) {
                     temp1 = true ;
@@ -65,13 +68,16 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
                 }
             }   
         }
-    return temp1; // Retourne si il y a une ligne gagnante : TRUE la couleur gagne FALSE la couleur de ne gagne pas en ligne
-    }
+    return temp1; 
+    }// Retourne si il y a une ligne gagnante : TRUE la couleur gagne FALSE la couleur de ne gagne pas en ligne
     
     public boolean colonneGagnantePourCouleur (String couleur ) {
        
         boolean temp2 = false;
         for (int i = 0; i < 7 ;i++){
+            if (temp2 == true){
+                break;
+            }
             for (int a = 0; a <= 2; a++){
                 if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a+1,i) == couleur & lireCouleurDuJeton(a+2, i) == couleur & lireCouleurDuJeton(a+3, i) == couleur) {
                     temp2 = true ;
@@ -86,12 +92,39 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
             
 
     
-    public diagonaleMontanteGagnantePourCouleur(String couleur) {
-            
+    public boolean diagonaleMontanteGagnantePourCouleur(String couleur) {
+       
+        boolean temp3 = false;
+        for (int i = 3; i < 7 ;i++){
+            if (temp3 == true){
+                break;
+            }
+            for (int a = 0; a <= 2; a++){
+                if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a+1,i-1) == couleur & lireCouleurDuJeton(a+2, i-2) == couleur & lireCouleurDuJeton(a+3, i-3) == couleur) {
+                    temp3 = true ;
+                    break;
+                }
+            }   
+        }
+        return temp3;       
     }
     
-    public diagonaleDescendanteGagnantePourCouleur(String couleur) {
-            
+    public boolean diagonaleDescendanteGagnantePourCouleur(String couleur) {
+      
+        boolean temp4 = false;
+        for (int i = 0; i < 4 ;i++){
+            if (temp4 == true){
+                break;
+            }
+            for (int a = 0; a <= 2; a++){
+                if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a+1,i+1) == couleur & lireCouleurDuJeton(a+2, i+2) == couleur & lireCouleurDuJeton(a+3, i+3) == couleur) {
+                    temp4 = true ;
+                    break;
+                }
+            }   
+        }
+        return temp4;         
+        
     }
 
 }
