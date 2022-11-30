@@ -7,7 +7,7 @@ import java.util.Scanner;
 import sp4_gouin_maugeais.Jeton;
 import sp4_gouin_maugeais.joueur;
 import sp4_gouin_maugeais.PlateauDeJeu;
-import sp4_gouin_maugeais.CelluleDeGrille;
+import sp4_gouin_maugeais.CelluleDeGrille; //on importe les classses nécessaires
 
 /**
  *
@@ -21,7 +21,7 @@ public class Partie {
     private PlateauDeJeu plateau;
 
 
-    public Partie (joueur joueur1,joueur joueur2){
+    public Partie (joueur joueur1,joueur joueur2){  //création du constructeur 
 
         listeJoueurs[0]=joueur1;
 
@@ -37,7 +37,7 @@ public class Partie {
     }
 
 
-    public void attribuerCouleurAuxJoueurs(){
+    public void attribuerCouleurAuxJoueurs(){   //méthode permettant de donner une couleur aléatoire aux joueurs entre jaune et rouge
 
         int valeur=(int) (Math.random() * (2));
 
@@ -63,7 +63,7 @@ public class Partie {
 
  
 
-    public void creerEtAffecterJeton(joueur j1){
+    public void creerEtAffecterJeton(joueur j1){  //méthode qui va créer 30 objets de type Jeton pour chaque couleur et les donnes aux joueurs
 
         if ("rouge".equals(j1.getCouleur())){
 
@@ -96,7 +96,7 @@ public class Partie {
     }
 
  
-    public void placerTrousNoirsEtDesintegrateurs(){
+    public void placerTrousNoirsEtDesintegrateurs(){  //méthode qui va créer 5 trous noirs et désintegrateurs et va cacher certains desintegrateurs derrière des trous noirs
 
         int i=0;
 
@@ -169,7 +169,7 @@ public class Partie {
  
 
 
-    public void initialiserPartie(){
+    public void initialiserPartie(){   //Méthode faisant appels à toutes celles créées dernièrement afin d'initialiser la partie 
 
         attribuerCouleurAuxJoueurs();
 
