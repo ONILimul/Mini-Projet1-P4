@@ -42,5 +42,10 @@ public class joueur {
     public void utiliserDesintegrateur(){   //méthode permettant d'enlever un desintégrateur
         nombreDesintegrateurs -= 1;
     }
+
+    
+    public String getCouleur(){
+        return couleur;
+    }
     
 }

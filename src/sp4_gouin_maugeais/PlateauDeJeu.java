@@ -44,6 +44,26 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
         }
        return cond;   // on retourne si notre grille est remplie ou non  FALSE: il reste une place TRUE: le tableau est plein
     }
+    public void viderGrille(joueur joueur1, joueur joueur2) {
+        String couleur;
+        Jeton jeton;
+        for (int i = 0; i<7; i++){
+            for (int j = 0; j<6; j++){
+                if (grille[i][j].presenceJeton() == true) {
+                    couleur = lireCouleurDuJeton(i,j);
+                    jeton = grille[i][j].recupererJeton();
+                    if(joueur1.getCouleur().equals(couleur)){
+                        joueur1.ajouterJeton(jeton);
+                    }
+                    else {
+                        joueur2.ajouterJeton(jeton);
+                    }
+                }
+            }
+        }
+        
+    }
+    
     public void afficherGrilleSurConsole() {  // Méthode qui permet d'afficher la grille de jeu sur la console
         System.out.println(grille.toString());
     }
@@ -93,21 +113,28 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     public diagonaleDescendanteGagnantePourCouleur(String couleur) {
             
     }
-    public void tasserLigne(int i) {
+    public void tasserLigne(int indicCol) {
+        for(int i=5; i>0 ;i--){//on parcourt les lignes de la colonne de bas en haut
+            if(grille[i][indicCol]==null){//si la ligne de la colonne est null
+                grille[i][indicCol]=grille[i-1][indicCol];//alors on invers la ligne du dessus avec la ligne actuelle
+                grille[i-1][indicCol]=null;//et on met la ligne du dessus à null pour que la condition sur la ligne superieuir s'effectue
+               
+            }
+        }  
         
     }
     int temp0 = 0;
     public boolean colonneRemplie (int numColonne) {     //methode permettant de savoir si une colonne est remplie de jetons ou non
-        for (int i=0; i <= 6; i++ ){
-            if (grille [i][numColonne].presenceJeton() == true) {
-                temp0 += 1;
+        for (int i=0; i <= 6; i++ ){  //on va se balader sur toute les lignes
+            if (grille [i][numColonne].presenceJeton() == true) { //on regarde si sur chaque case de notre colonne on a la présence d'un jeton
+                temp0 += 1; //si c'est le cas on ajoute 1 à une variable 
             }
         }
-        if (temp0 == 7){
+        if (temp0 == 7){ // si notre variable est égale à 7 = toute les lignes sont occupées alors on peut renvoyer "true"
             return true;
         }
         else {
-            return false;
+            return false; //sinon cela veut dire qu'il reste de la place et donc on renvoie "false"
         }
          
     }
