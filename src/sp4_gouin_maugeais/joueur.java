@@ -47,5 +47,9 @@ public class joueur { // Création de la classe joueur
     public String getCouleur(){
         return couleur;
     }
+
+    public int getNombreDesintegrateurs() {
+        return nombreDesintegrateurs;
+    }
     
 }
