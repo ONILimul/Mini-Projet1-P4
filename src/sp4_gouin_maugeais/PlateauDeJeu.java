@@ -146,6 +146,18 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
         return temp4;  // on retourne la variable        
         
     }
+    
+    public boolean GagnantePourCouleur(String CouleurTest){ // méthode réunissant toutes les sous méthodes crées précedement 
+        boolean CouleurWin = false; // variable retournée
+                
+        if (diagonaleDescendanteGagnantePourCouleur(CouleurTest)== true || diagonaleMontanteGagnantePourCouleur(CouleurTest) == true || colonneGagnantePourCouleur (CouleurTest ) == true || ligneGagnantePourCouleur (CouleurTest) == true){ //conditions si une des sous méthodes est validée 
+            
+            CouleurWin = true;// si une des sous méthodes donne une couleur gagnante alors on met la variable retournée à "true"
+        
+        }
+    return CouleurWin;   // on retourne la variable de victoire ou non  
+    }
+    
 
     public void tasserLigne(int indicCol) {
         for(int i=5; i>0 ;i--){//on parcourt les lignes de la colonne de bas en haut
