@@ -17,7 +17,7 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
     String Couleur_jeton_actuel;
     
 
-    public CelluleDeGrille(Jeton jetonCourant, boolean avoirTrouNoir, boolean avoirDesintegrateur) {    // Constructeur pour une cellule
+    public CelluleDeGrille() {    // Constructeur pour une cellule
         this.jetonCourant = null;
         this.avoirTrouNoir = false;
         this.avoirDesintegrateur = false;

@@ -15,7 +15,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     public PlateauDeJeu(){  // constructeur du plateau de jeu 
         for(int i=0; i<6; i++){
             for(int j=0; j<7; j++){
-                grille[i][j]= null; // on attribue des cases vides a toutes les cellules grilles
+                grille[i][j]= new CelluleDeGrille(); // on attribue des cases vides a toutes les cellules grilles
             }
    
         }
