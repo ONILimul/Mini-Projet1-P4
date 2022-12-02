@@ -19,8 +19,8 @@ public class joueur { // Création de la classe joueur
         this.nombreDesintegrateurs = nombreDesintegrateurs;
         nombreDesintegrateurs = 0;
     }
-    public void affecterCouleur (String joueur) {   //Méthode permettant de d'affecter à un joueur une couleur (ici entre rouge et jaune)
-        joueur = couleur;
+    public void affecterCouleur (String color) {   //Méthode permettant de d'affecter à un joueur une couleur (ici entre rouge et jaune)
+        couleur = color;
     }
     public int nombreDeJetons() {   //Méthode permettant d'obtenir le nombre de jeton restant dans la réserve d'un joueur
         return reserveJetons.size();

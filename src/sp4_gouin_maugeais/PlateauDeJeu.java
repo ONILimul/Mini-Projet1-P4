@@ -23,7 +23,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     
     public int ajouterJetonDansColonne(Jeton jetemp, int col){  //méthode pour ajouter un jeton dans une colonne 
         int ret = -1 ;
-        for(int i = 6; i>=0 ; i--){
+        for(int i = 5; i>=0 ; i--){
             if (grille[i][col]==null){ // Dès qu'une cellule de la colonne est vide on peut y placer le jeton 
                 grille[i][col].affecterJeton(jetemp);  // Donc on affecte le jeton à la cellule
                 ret = i ;

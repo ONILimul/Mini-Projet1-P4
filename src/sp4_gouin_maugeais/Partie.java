@@ -195,7 +195,7 @@ public class Partie {
 
                 joueurCourant = listeJoueurs[0];
 
-                System.out.println("Que voulez vous faire, si vous voulez jouer un jeton tapez '1', si vous voulez récupérer un jeton, tapez '2' et si vous voulez utiliser un désintegrateur, tapez'3'");//on demande au joueur ce qu'il souhaite faire
+                System.out.println("Joueur1 que voulez vous faire ? Si vous voulez jouer un jeton tapez '1', si vous voulez récupérer un jeton, tapez '2' et si vous voulez utiliser un désintegrateur, tapez'3'");//on demande au joueur ce qu'il souhaite faire
 
                 Scanner reponse = new Scanner (System.in); //on récupère sa réponse
 
@@ -293,15 +293,18 @@ public class Partie {
 
                     n +=1;
 
-                }              
-
+                }
+               
+                if(plateau.GagnantePourCouleur(joueurCourant.getCouleur())== true){
+                    System.out.println ("Tu as gagné");
+                }
             }
 
             if (n%2 == 1){  //on passe au tour du joueur suivant et on lui propose les même choix que pour le joueur 1
 
                 joueurCourant = listeJoueurs[1];
 
-                System.out.println("Que voulez vous faire, si vous voulez jouer un jeton tapez '1', si vous voulez récupérer un jeton, tapez '2' et si vous voulez utiliser un désintegrateur, tapez'3'");
+                System.out.println("Joueur2 que voulez vous faire ? Si vous voulez jouer un jeton tapez '1', si vous voulez récupérer un jeton, tapez '2' et si vous voulez utiliser un désintegrateur, tapez'3'");
 
                 Scanner reponse = new Scanner (System.in);
 
@@ -402,8 +405,11 @@ public class Partie {
                 }              
 
                 
-
-            }       
+                if(plateau.GagnantePourCouleur(joueurCourant.getCouleur())== true){
+                    System.out.println ("Tu as gagné");
+                }
+            }
+            
 
         }
 
