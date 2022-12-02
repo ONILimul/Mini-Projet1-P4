@@ -19,8 +19,8 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
 
     public CelluleDeGrille(Jeton jetonCourant, boolean avoirTrouNoir, boolean avoirDesintegrateur) {    // Constructeur pour une cellule
         this.jetonCourant = null;
-        this.avoirTrouNoir = false ;
-        this.avoirDesintegrateur = false ;
+        this.avoirTrouNoir = false;
+        this.avoirDesintegrateur = false;
     }
     
     public boolean presenceJeton(){  // Méthode permettant de savoir si la cellule est occuppée par un jeton ou non 
