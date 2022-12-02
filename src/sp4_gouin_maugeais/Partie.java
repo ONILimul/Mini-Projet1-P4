@@ -30,7 +30,7 @@ public class Partie {
         plateau=new PlateauDeJeu();
 
     }
-    public joueur[] getListeJoueurs() {
+    public joueur[] getListeJoueurs() {  //méthode renvoyant une liste des joueurs
 
         return listeJoueurs;
 
@@ -39,9 +39,9 @@ public class Partie {
 
     public void attribuerCouleurAuxJoueurs(){   //méthode permettant de donner une couleur aléatoire aux joueurs entre jaune et rouge
 
-        int valeur=(int) (Math.random() * (2));
+        int valeur=(int) (Math.random() * (2)); //on choisi un chiffre entre 0 et 1
 
-        if (valeur==0){
+        if (valeur==0){ //si le chiffre est 0, l'un des joueurs sera rouge et l'autre jaune
 
             listeJoueurs[0].affecterCouleur("rouge");
 
@@ -49,7 +49,7 @@ public class Partie {
 
         }
 
-        else{
+        else{  //si le chiffre est 1, l'ordre des couleurs est inversé
 
             listeJoueurs[0].affecterCouleur("jaune");
 
@@ -67,7 +67,7 @@ public class Partie {
 
         if ("rouge".equals(j1.getCouleur())){
 
-            for (int i=0;i<31;i++){
+            for (int i=0;i<31;i++){ //on créer une boucle pour créer les 30 jetons pour le joueur rouge
 
                 Jeton jeton=new Jeton ("rouge");
 
@@ -79,7 +79,7 @@ public class Partie {
 
         }
 
-        if ("jaune".equals(j1.getCouleur())){
+        if ("jaune".equals(j1.getCouleur())){ //on créer une boucle pour créer les 30 jetons pour le joueur jaune
 
             for (int i=0;i<31;i++){
 
@@ -102,7 +102,7 @@ public class Partie {
 
         while (i<3){
 
-            int x=(int) (Math.random() * (9-3));
+            int x=(int) (Math.random() * (9-3)); //on choisi aléatoirement des cases pour placer les trous noirs et desintégrateurs
 
             int y=(int) (Math.random() * (8-3));
 
@@ -124,7 +124,7 @@ public class Partie {
 
         }
 
-        while (i<5){
+        while (i<5){  //on répète cette étape jusqu'a ce que le bon nombre de trou noirs et désintégrateurs soit présent
 
             int x=(int) (Math.random() * (9-3));
 
@@ -183,7 +183,7 @@ public class Partie {
 
    
 
-    public void lancerPartie(){
+    public void lancerPartie(){  //méthode permettant de lancer une partie 
 
         int n=0;
 
@@ -195,13 +195,13 @@ public class Partie {
 
                 joueurCourant = listeJoueurs[0];
 
-                System.out.println("Que voulez vous faire, si vous voulez jouer un jeton tapez '1', si vous voulez récupérer un jeton, tapez '2' et si vous voulez utiliser un désintegrateur, tapez'3'");
+                System.out.println("Que voulez vous faire, si vous voulez jouer un jeton tapez '1', si vous voulez récupérer un jeton, tapez '2' et si vous voulez utiliser un désintegrateur, tapez'3'");//on demande au joueur ce qu'il souhaite faire
 
-                Scanner reponse = new Scanner (System.in);
+                Scanner reponse = new Scanner (System.in); //on récupère sa réponse
 
                 int choix = reponse.nextInt();
 
-                if (choix == 1){
+                if (choix == 1){ //on execute cette partie du code si le joueur veut jouer un jeton
 
                     int cln=10;
 
@@ -209,7 +209,7 @@ public class Partie {
 
                     while (cln>7){
 
-                        System.out.println("Dans quelle colonne voulez vous placer votre jeton");
+                        System.out.println("Dans quelle colonne voulez vous placer votre jeton"); //le joueur doit choisir sa colonne 
 
                         cln = colonne.nextInt();
 
@@ -221,7 +221,7 @@ public class Partie {
 
                 }
 
-                if (choix == 2){
+                if (choix == 2){  //on execute cette partie du code si le joueur veut récuperer un jeton
 
                     int cln=10;
 
@@ -255,13 +255,13 @@ public class Partie {
 
                 }
 
-                if (choix == 3){
+                if (choix == 3){   //on execute cette partie du code si le joueur veut utiliser un désintégrateur
 
                     int cln=10;
 
                     int lgn=10;
 
-                    if (joueurCourant.getNombreDesintegrateurs()==0){
+                    if (joueurCourant.getNombreDesintegrateurs()==0){ //on vérifie si le joueur possède des desintégrateurs
 
                         System.out.println("Le joueur n'a pas de désintegrateurs");
 
@@ -297,7 +297,7 @@ public class Partie {
 
             }
 
-            if (n%2 == 1){
+            if (n%2 == 1){  //on passe au tour du joueur suivant et on lui propose les même choix que pour le joueur 1
 
                 joueurCourant = listeJoueurs[1];
 
