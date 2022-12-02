@@ -22,6 +22,14 @@ public class SP4_GOUIN_MAUGEAIS {
         Jeton Rouge1 = new Jeton("rouge");
         System.out.println(Rouge1);
         
+       
+        joueur Thomas = new joueur("Thomas", 0);
+        joueur Robin = new joueur("Robin", 0);
         
+        Partie test = new Partie(Thomas,Robin);
+        test.initialiserPartie();
+        test.lancerPartie();
+        
+
     }
 }         
