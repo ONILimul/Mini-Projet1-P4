@@ -29,7 +29,7 @@ public class SP4_GOUIN_MAUGEAIS {
         Partie test = new Partie(Thomas,Robin);
         test.initialiserPartie();
         test.lancerPartie();
-        
+
 
     }
 }         
