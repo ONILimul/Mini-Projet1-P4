@@ -10,12 +10,13 @@ import javax.swing.JButton;
  *
  * @author thoma
  */
-public class CelluleGraphique extends JButton {
+public class CelluleGraphique extends JButton { // on crée une nouvelle classe 
     
-    CelluleDeGrille celluleAssocie;
+    CelluleDeGrille celluleAssocie; // attribut de la classe 
     
     public CelluleGraphique(CelluleDeGrille uneCellule){
         celluleAssocie = uneCellule;
     }
+    
     
 }
