@@ -11,16 +11,17 @@ package sp4_gouin_maugeais;
 public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
     
     
-    private Jeton jetonCourant ;     //   Création des attributs CelluleDeGrille
-    private boolean avoirTrouNoir;
-    private boolean avoirDesintegrateur;
+    Jeton jetonCourant ;     //   Création des attributs CelluleDeGrille
+    boolean avoirTrouNoir;
+    boolean avoirDesintegrateur;
+    
     String Couleur_jeton_actuel;
     
 
-    public CelluleDeGrille() {    // Constructeur pour une cellule
-        this.jetonCourant = null;
-        this.avoirTrouNoir = false;
-        this.avoirDesintegrateur = false;
+    public CelluleDeGrille() {    // Constructeur pour une cellule au debut on a:
+        jetonCourant = null;//pas de jeton
+        avoirTrouNoir = false;// pas de trou noir
+        avoirDesintegrateur = false; // pas de desintegrateur
     }
     
     public boolean presenceJeton(){  // Méthode permettant de savoir si la cellule est occuppée par un jeton ou non 
@@ -32,11 +33,15 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
         }
     }
     
-    public void affecterJeton(Jeton jeton){   // Setter pour affecter un jeton à une cellule
-        jetonCourant = jeton ;
+    boolean affecterJeton(Jeton jeton){   // Setter pour affecter un jeton à une cellule
+        if(jetonCourant==null){
+            jetonCourant = jeton ;
+            return true;
+        }
+        return false;
     }
     
-    public String lireCouleurDuJeton(){// on lit la couleur du jeton actuel dans la cellule 
+    String lireCouleurDuJeton(){// on lit la couleur du jeton actuel dans la cellule 
         if (jetonCourant!=null){// si cellule non vide
             return(jetonCourant.getCouleur());// on retourne la couleur du jeton 
         }
@@ -45,24 +50,26 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
         }
     }
     
-    public Jeton recupererJeton(){  // Méthode pour récupérer un jeton dans une cellule, l'enlever de la cellule et le retourner
-        Jeton temp ; // déclaration et utilisation de la variable temporaire dans laquelle on va garder temporairement le jeton qui va être suprimé afin de le retourner par la suite
-        temp = jetonCourant ;
+    Jeton recupererJeton(){  // Méthode pour récupérer un jeton dans une cellule, l'enlever de la cellule et le retourner
+        Jeton temp = jetonCourant; // déclaration et utilisation de la variable temporaire dans laquelle on va garder temporairement le jeton qui va être suprimé afin de le retourner par la suite
         jetonCourant = null ;
         return temp;
     }
         
-    public void placerTrouNoir(){           //place un trou noir dans la cellule
-        avoirTrouNoir=true;
+    boolean placerTrouNoir(){           //place un trou noir dans la cellule
+        if(avoirTrouNoir){
+            return false;
+        }
+    avoirTrouNoir =true;
+        return true;
     }
     
     public void supprimerTrouNoir(){     //supprime trou noir de la cellule
         avoirTrouNoir=false;
     }
     
-    public boolean presenceTrouNoir(){    // Vérifie la présence d'un trou noir dans la cellule
-        return avoirTrouNoir;
-        
+        boolean presenceTrouNoir(){    // Vérifie la présence d'un trou noir dans la cellule
+            return avoirTrouNoir;   
     }
     
     public void supprimerJeton(){    // Supprime le jeton dans la cellule

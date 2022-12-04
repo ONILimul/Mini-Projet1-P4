@@ -10,9 +10,9 @@ package sp4_gouin_maugeais;
  */
 public class fenetreDeJeu extends javax.swing.JFrame {
 
-    private joueur[] listeJoueurs = new joueur[2];
-    private joueur joueurCourant;
-    private PlateauDeJeu plateau;
+    joueur [] listeJoueurs = new joueur[2];
+    joueur joueurCourant;
+    PlateauDeJeu plateau;
 
     /**
      * Creates new form fenetreDeJeu
@@ -25,7 +25,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
         for (int i = 5; i >= 0; i--) {
             for (int j = 0; j < 7; j++) {
-                CelluleGraphique cellGraph = new CelluleGraphique();
+                CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]); //On récupère la cellule de plateau et on la passe en parametre pour "CelluleGraphique" 
                 panneau_grille.add(cellGraph);
             }
 
