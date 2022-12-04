@@ -15,9 +15,7 @@ import sp4_gouin_maugeais.CelluleDeGrille; //on importe les classses nécessaire
  */
 public class Partie {
     private joueur[] listeJoueurs=new joueur[2];
-
     private joueur joueurCourant;
-
     private PlateauDeJeu plateau;
 
 

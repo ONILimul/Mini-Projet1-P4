@@ -10,11 +10,26 @@ package sp4_gouin_maugeais;
  */
 public class fenetreDeJeu extends javax.swing.JFrame {
 
+    private joueur[] listeJoueurs = new joueur[2];
+    private joueur joueurCourant;
+    private PlateauDeJeu plateau;
+
     /**
      * Creates new form fenetreDeJeu
      */
     public fenetreDeJeu() {
         initComponents();
+        
+        panneau_info_joueurs.setVisible(false); // les 2 panneaux infos joueurs et partie ne sont pas affichés au lancement du programme
+        panneau_info_partie.setVisible(false);
+
+        for (int i = 5; i >= 0; i--) {
+            for (int j = 0; j < 7; j++) {
+                CelluleGraphique cellGraph = new CelluleGraphique();
+                panneau_grille.add(cellGraph);
+            }
+
+        }
     }
 
     /**
@@ -87,6 +102,11 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         panneau_creation_partie.add(nom_joueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 120, -1));
 
         btn_start.setText("Démarrer partie");
+        btn_start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_startActionPerformed(evt);
+            }
+        });
         panneau_creation_partie.add(btn_start, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
         getContentPane().add(panneau_creation_partie, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 310, 140));
@@ -185,6 +205,12 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private void nom_joueur1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_joueur1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nom_joueur1ActionPerformed
+
+    private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
+        // TODO add your handling code here:
+        panneau_info_joueurs.setVisible(true); // Dès que l'on active le bouton débuter partie, on affiche les deux pannels cachés au début de la partie 
+        panneau_info_partie.setVisible(true);
+    }//GEN-LAST:event_btn_startActionPerformed
 
     /**
      * @param args the command line arguments
