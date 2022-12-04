@@ -65,9 +65,34 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     }
     
     public void afficherGrilleSurConsole() {  // Méthode qui permet d'afficher la grille de jeu sur la console
-        System.out.println(grille.toString());
-    }
+        for (int j = 6; j > -1; j--) {
+            for (int i = 0; i < 6; i++) {
+                if (grille[i][j].presenceJeton() == true) {
+                    System.out.print("[" + grille[i][j].lireCouleurDuJeton() + "]");
+                } else {
 
+                    if (grille[i][j].presenceDesintegrateur() == true && grille[i][j].presenceTrouNoir() == true) {
+                        System.out.print("[T]");   //on fait apparaître un "T" Si il y a un trou noir sur un Désintégrateur
+                    }
+                    if (grille[i][j].presenceDesintegrateur() == false && grille[i][j].presenceTrouNoir() == true) {
+                        System.out.print("[T]");   //on fait apparaître un "T" Si il y a un trou noir
+                    }
+
+                    if (grille[i][j].presenceDesintegrateur() == true && grille[i][j].presenceTrouNoir() == false) {
+                        System.out.print("[D]"); //on fait apparaître "D" lorsqu'il y a un Désintégrateur non cacher par un trou noir
+                    }
+                    if (grille[i][j].presenceDesintegrateur() == false && grille[i][j].presenceTrouNoir() == false) {
+                        System.out.print("[" + "N" + "]");  //On fait apparaître "N" lorsqu'il n'y a pas de trous noirs ou de desintégrateurs
+                    }
+                }
+                if (i == 5) { //on mets une condition pour changer de ligne une fois que l'on a tous les cases d'une ligne
+
+                    System.out.println("\n");
+                }
+            }
+        }
+    }
+    
     public boolean presenceJeton(int x, int y){  // Méthode réutilisant la méthode de cellule pour l'appliquer à une cellule de la grille de jeu 
         return grille[x][y].presenceJeton();
     }
@@ -82,7 +107,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
                 break;
             }            
             for (int i = 0; i <= 3; i++){ // Pour une ligne testée on teste les colonnes jusqu'à "la limite" du plateau (pas besoin de tester toutes les colonnes vu qu'on le fait déjà dans la condition ci-dessous)
-                if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a,i+1) == couleur & lireCouleurDuJeton(a, i+2) == couleur & lireCouleurDuJeton(a, i+3) == couleur) { // condition avec 4 cellules cotes a cotes en ligne avec jeton de couleur identiques
+                if ( lireCouleurDuJeton(a,i).equals(couleur) && lireCouleurDuJeton(a,i+1).equals(couleur) && lireCouleurDuJeton(a, i+2).equals(couleur) && lireCouleurDuJeton(a, i+3).equals(couleur)) { // condition avec 4 cellules cotes a cotes en ligne avec jeton de couleur identiques
                     temp1 = true ; // alors si la condition est vérifiée on met notre variable retournée comme vraie
                     break; // on sort de la 2ème boucle 
                 }
@@ -99,7 +124,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
                 break;
             }
             for (int a = 0; a <= 2; a++){ // Pour une colonne testée on teste les ligne jusqu'à "la limite" du plateau (pas besoin de tester toutes les lignes)
-                if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a+1,i) == couleur & lireCouleurDuJeton(a+2, i) == couleur & lireCouleurDuJeton(a+3, i) == couleur) { // condition avec 4 cellules cotes a cotes en colonne avec jeton de couleur identiques
+                if ( lireCouleurDuJeton(a,i).equals(couleur) && lireCouleurDuJeton(a+1,i).equals(couleur) && lireCouleurDuJeton(a+2, i).equals(couleur) && lireCouleurDuJeton(a+3, i).equals(couleur)) { // condition avec 4 cellules cotes a cotes en colonne avec jeton de couleur identiques
                     temp2 = true ; // alors si la condition est vérifiée on met notre variable retournée comme vraie
                     break; // on sort de la 2ème boucle 
                 }
@@ -120,7 +145,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
                 break;
             }
             for (int a = 0; a <= 2; a++){ // 2ème boucle pour les lignes
-                if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a+1,i-1) == couleur & lireCouleurDuJeton(a+2, i-2) == couleur & lireCouleurDuJeton(a+3, i-3) == couleur) { // conditions victoire
+                if ( lireCouleurDuJeton(a,i).equals(couleur) && lireCouleurDuJeton(a+1,i-1).equals(couleur) && lireCouleurDuJeton(a+2, i-2).equals(couleur) && lireCouleurDuJeton(a+3, i-3).equals(couleur)) { // conditions victoire
                     temp3 = true ;// si conditions de victoire vérifiées on met la variable retournée à true 
                     break; // on sort de la 2ème boucle 
                 }
@@ -137,7 +162,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
                 break;
             }
             for (int a = 0; a <= 2; a++){ // 2ème boucle pour les lignes
-                if ( lireCouleurDuJeton(a,i) == couleur & lireCouleurDuJeton(a+1,i+1) == couleur & lireCouleurDuJeton(a+2, i+2) == couleur & lireCouleurDuJeton(a+3, i+3) == couleur) {// Conditions de diaguonale gagnante
+                if ( lireCouleurDuJeton(a,i).equals(couleur) && lireCouleurDuJeton(a+1,i+1).equals(couleur) && lireCouleurDuJeton(a+2, i+2).equals(couleur) && lireCouleurDuJeton(a+3, i+3).equals(couleur)) {// Conditions de diaguonale gagnante
                     temp4 = true ; //On a une victoire donc la variable retournée est mise à true 
                     break;
                 }

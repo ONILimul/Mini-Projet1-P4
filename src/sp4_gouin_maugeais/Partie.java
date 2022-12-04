@@ -188,9 +188,8 @@ public class Partie {
         int n=0;
 
         joueurCourant = listeJoueurs[0];
-
         while(plateau.GagnantePourCouleur(joueurCourant.getCouleur()) == false){
-
+            plateau.afficherGrilleSurConsole();
             if (n%2 == 0){
 
                 joueurCourant = listeJoueurs[0];
