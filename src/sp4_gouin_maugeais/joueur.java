@@ -14,11 +14,16 @@ public class joueur { // Création de la classe joueur
     private ArrayList<Jeton> reserveJetons = new ArrayList<Jeton>();
     private int nombreDesintegrateurs;
 
-    public joueur(String nom, int nombreDesintegrateurs) {    //Constructeur de la classe
+    public joueur(String nom) {    //Constructeur de la classe
         this.nom = nom;
-        this.nombreDesintegrateurs = nombreDesintegrateurs;
+        this.nombreDesintegrateurs = 0;
         nombreDesintegrateurs = 0;
     }
+    
+    public String Nom(String nomJ){
+        return nomJ;
+    }
+    
     public void affecterCouleur (String color) {   //Méthode permettant de d'affecter à un joueur une couleur (ici entre rouge et jaune)
         couleur = color;
     }

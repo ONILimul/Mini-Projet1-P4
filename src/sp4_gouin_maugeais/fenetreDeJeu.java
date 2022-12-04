@@ -41,13 +41,14 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Nom_joueur2 = new javax.swing.JTextField();
         panneau_grille = new javax.swing.JPanel();
         panneau_creation_partie = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        nom_joueur1 = new javax.swing.JTextField();
-        nom_joueur2 = new javax.swing.JTextField();
+        Nom_joueur1 = new javax.swing.JTextField();
         btn_start = new javax.swing.JButton();
+        Nom_Joueur2 = new javax.swing.JTextField();
         panneau_info_partie = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         lbl_jcourant = new javax.swing.JLabel();
@@ -77,6 +78,12 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         btn_col_4 = new javax.swing.JButton();
         btn_col_5 = new javax.swing.JButton();
 
+        Nom_joueur2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nom_joueur2ActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,14 +99,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
         jLabel2.setText("Nom joueur 1 :");
         panneau_creation_partie.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
-
-        nom_joueur1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nom_joueur1ActionPerformed(evt);
-            }
-        });
-        panneau_creation_partie.add(nom_joueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 120, -1));
-        panneau_creation_partie.add(nom_joueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 120, -1));
+        panneau_creation_partie.add(Nom_joueur1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 120, -1));
 
         btn_start.setText("Démarrer partie");
         btn_start.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +108,13 @@ public class fenetreDeJeu extends javax.swing.JFrame {
             }
         });
         panneau_creation_partie.add(btn_start, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        Nom_Joueur2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nom_Joueur2ActionPerformed(evt);
+            }
+        });
+        panneau_creation_partie.add(Nom_Joueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 120, -1));
 
         getContentPane().add(panneau_creation_partie, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 310, 140));
 
@@ -202,15 +209,93 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         setBounds(0, 0, 1043, 696);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nom_joueur1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_joueur1ActionPerformed
+    private void Nom_joueur2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nom_joueur2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nom_joueur1ActionPerformed
+    }//GEN-LAST:event_Nom_joueur2ActionPerformed
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
+
         // TODO add your handling code here:
         panneau_info_joueurs.setVisible(true); // Dès que l'on active le bouton débuter partie, on affiche les deux pannels cachés au début de la partie 
         panneau_info_partie.setVisible(true);
+        initialiserPartie();
+        panneau_grille.repaint();
+
+    }    
+        
+        
+    
+
+
+
+    public void attribuerCouleurAuxJoueurs(){   //méthode permettant de donner une couleur aléatoire aux joueurs entre jaune et rouge
+
+        int valeur=(int) (Math.random() * (2)); //on choisi un chiffre entre 0 et 1
+
+        if (valeur==0){ //si le chiffre est 0, l'un des joueurs sera rouge et l'autre jaune
+
+            listeJoueurs[0].affecterCouleur("rouge");
+
+            listeJoueurs[1].affecterCouleur("jaune");
+
+        }
+
+        else{  //si le chiffre est 1, l'ordre des couleurs est inversé
+
+            listeJoueurs[0].affecterCouleur("jaune");
+
+            listeJoueurs[1].affecterCouleur("rouge");
+
+        }
+
+       
+
+    }    
+   
+    public void initialiserPartie(){   //Méthode faisant appels à toutes celles créées dernièrement afin d'initialiser la partie 
+
+        String nomJ1= Nom_joueur1.getText(); // On a une variable qui prend la valeur rentrée dans le texte field 
+        String nomJ2= Nom_joueur2.getText();
+        
+        joueur J1 = new joueur(nomJ1);//Ainsi on crée nos joueurs avec leur nom 
+        joueur J2 = new joueur(nomJ2);
+
+        
+        listeJoueur[0] = J1;
+        listeJoueur[1] = J2;
+        
+        attribuerCouleurAuxJoueurs();
+
+        creerEtAffecterJeton(listeJoueurs[1]);
+
+        creerEtAffecterJeton(listeJoueurs[0]);
+
+        placerTrousNoirsEtDesintegrateurs();
+
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    
+        
+        
+        
+        
     }//GEN-LAST:event_btn_startActionPerformed
+
+    private void Nom_Joueur2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nom_Joueur2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nom_Joueur2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,6 +333,9 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Nom_Joueur2;
+    private javax.swing.JTextField Nom_joueur1;
+    private javax.swing.JTextField Nom_joueur2;
     private javax.swing.JButton btn_col_0;
     private javax.swing.JButton btn_col_1;
     private javax.swing.JButton btn_col_2;
@@ -277,8 +365,6 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_j2_nom;
     private javax.swing.JLabel lbl_jcourant;
     private javax.swing.JScrollPane message;
-    private javax.swing.JTextField nom_joueur1;
-    private javax.swing.JTextField nom_joueur2;
     private javax.swing.JPanel panneau_creation_partie;
     private javax.swing.JPanel panneau_grille;
     private javax.swing.JPanel panneau_info_joueurs;
