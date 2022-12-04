@@ -32,17 +32,17 @@ public class CelluleGraphique extends JButton { // on crée une nouvelle classe
     @Override
     public void paintComponent (Graphics G){
         super.paintComponent(G);
-        if(celluleAssociee.presenceTrouNoir() == true) {
+        if(celluleAssociee.presenceTrouNoir() == true) {// si trou noir on affiche limage correspondante
             setIcon(img_trouNoir);
         }
         else{
-            if(celluleAssociee.presenceDesintegrateur() == true) {
+            if(celluleAssociee.presenceDesintegrateur() == true) {// de meme avec le desintegrateur
                 setIcon(img_desint);
             }
             else{
-                String couleur_jeton = celluleAssociee.lireCouleurDuJeton();
+                String couleur_jeton = celluleAssociee.lireCouleurDuJeton(); // on note la couleur du jeton si il y en a un
                 switch (couleur_jeton){
-                    case ".": 
+                    case ".": // et en fonction on affiche limage correspondante
                         setIcon(img_vide);
                         break;
                     case "rouge" : 

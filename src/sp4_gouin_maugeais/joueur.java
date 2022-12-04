@@ -9,10 +9,10 @@ import java.util.ArrayList;
  * @author gouin
  */
 public class joueur { // Création de la classe joueur
-    private String nom;
-    private String couleur;
-    private ArrayList<Jeton> reserveJetons = new ArrayList<Jeton>();
-    private int nombreDesintegrateurs;
+    String nom;
+    String couleur;
+    ArrayList<Jeton> reserveJetons = new ArrayList<Jeton>();
+    int nombreDesintegrateurs;
 
     public joueur(String nom) {    //Constructeur de la classe
         this.nom = nom;

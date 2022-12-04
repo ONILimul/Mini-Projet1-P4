@@ -220,6 +220,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         panneau_info_partie.setVisible(true);
         initialiserPartie();
         panneau_grille.repaint();
+        btn_start.setEnabled(false);
 
     }    
         
@@ -227,6 +228,106 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     
 
 
+    
+    
+        public void creerEtAffecterJeton(joueur j1){  //méthode qui va créer 30 objets de type Jeton pour chaque couleur et les donnes aux joueurs
+
+        if ("rouge".equals(j1.getCouleur())){
+
+            for (int i=0;i<31;i++){ //on créer une boucle pour créer les 30 jetons pour le joueur rouge
+
+                Jeton jeton=new Jeton ("rouge");
+
+                j1.ajouterJeton(jeton);
+
+            }
+        }
+
+        if ("jaune".equals(j1.getCouleur())){ //on créer une boucle pour créer les 30 jetons pour le joueur jaune
+
+            for (int i=0;i<31;i++){
+
+                Jeton jeton=new Jeton ("jaune");
+
+                j1.ajouterJeton(jeton);
+
+            }
+
+           
+
+        }
+
+        }
+    
+        public void placerTrousNoirsEtDesintegrateurs(){  //méthode qui va créer 5 trous noirs et désintegrateurs et va cacher certains desintegrateurs derrière des trous noirs
+
+        int i=0;
+
+        while (i<3){
+
+            int x=(int) (Math.random() * (9-3)); //on choisi aléatoirement des cases pour placer les trous noirs et desintégrateurs
+
+            int y=(int) (Math.random() * (8-3));
+
+            if (plateau.presenceDesintegrateur(x,y)==false){
+
+                if (plateau.presenceTrouNoir(x,y)==false){
+
+                    plateau.placerTrouNoir(x,y);
+
+                    plateau.placerDesintegrateur(x,y);
+
+                    i+=1;
+
+                }
+
+            }
+
+               
+
+        }
+
+        while (i<5){  //on répète cette étape jusqu'a ce que le bon nombre de trou noirs et désintégrateurs soit présent
+
+            int x=(int) (Math.random() * (9-3));
+
+            int y=(int) (Math.random() * (8-3));
+
+            if (plateau.presenceDesintegrateur(x,y)==false){
+
+                if (plateau.presenceTrouNoir(x,y)==false){
+
+                    plateau.placerTrouNoir(x,y);
+
+                    i+=1;
+
+                }
+
+            }
+
+        }
+
+        while(i<7){
+
+            int x=(int) (Math.random() * (9-3));
+
+            int y=(int) (Math.random() * (8-3));
+
+            if (plateau.presenceDesintegrateur(x,y)==false){
+
+                if (plateau.presenceTrouNoir(x,y)==false){
+
+                    plateau.placerDesintegrateur(x,y);
+
+                    i+=1;
+
+                }
+
+            }
+
+        }
+
+    }
 
     public void attribuerCouleurAuxJoueurs(){   //méthode permettant de donner une couleur aléatoire aux joueurs entre jaune et rouge
 
@@ -261,36 +362,27 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         joueur J2 = new joueur(nomJ2);
 
         
-        listeJoueur[0] = J1;
-        listeJoueur[1] = J2;
+        listeJoueurs[0] = J1;
+        listeJoueurs[1] = J2;
         
         attribuerCouleurAuxJoueurs();
+        
+        lbl_j1_nom.setText(nomJ1);// on remplace les variables affichees par les vrai nom,couleur et nombre datout de jeu pour chaque joueur 
+        lbl_j2_nom.setText(nomJ2);
+        lbl_j1_couleur.setText(J1.getCouleur());
+        lbl_j2_couleur.setText(J2.getCouleur());
+        lbl_j1_desint.setText(J1.getNombreDesintegrateurs() + "");
+        lbl_j2_desint.setText(J2.getNombreDesintegrateurs() + "");
+
+        lbl_jcourant.setText(joueurCourant.nom); // Voir le joueur courant
+
 
         creerEtAffecterJeton(listeJoueurs[1]);
 
         creerEtAffecterJeton(listeJoueurs[0]);
 
         placerTrousNoirsEtDesintegrateurs();
-
-    }
-        
-        
-        
-        
-        
-        
-        
-        
-        
     
-    
-    
-    
-    
-        
-        
-        
-        
     }//GEN-LAST:event_btn_startActionPerformed
 
     private void Nom_Joueur2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nom_Joueur2ActionPerformed
