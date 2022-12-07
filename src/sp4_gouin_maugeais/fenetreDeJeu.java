@@ -55,8 +55,8 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                         lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + "");
                         lbl_j2_desint.setText(listeJoueurs[1].nombreDesintegrateurs + "");
 
-                        boolean vict_j1 = plateau.GagnantePourCouleur(listeJoueurs[0]);
-                        boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1]);
+                        boolean vict_j1 = plateau.GagnantePourCouleur(listeJoueurs[0].couleur);
+                        boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1].couleur);
 
                         if (vict_j1 && !vict_j2) {
                             textemessage.setText("Victoire de " + listeJoueurs[0].nom);
@@ -522,14 +522,14 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     public boolean jouerDansColonne(int indice_colonne) {
         boolean resultatAction;
 
-        resultatAction = plateau.ajouterJetonDansColonne(joueurCourant, indice_colonne);
+        resultatAction = plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(), indice_colonne);
         panneau_grille.repaint();
 
         lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + "");
         lbl_j2_desint.setText(listeJoueurs[1].nombreDesintegrateurs + "");
 
-        boolean vict_j1 = plateau.GagnantePourCouleur(listeJoueurs[0]);
-        boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1]);
+        boolean vict_j1 = plateau.GagnantePourCouleur(listeJoueurs[0].couleur);
+        boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1].couleur);
 
         if (vict_j1 && !vict_j2) {
             textemessage.setText("Victoire de " + listeJoueurs[0].nom);
