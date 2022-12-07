@@ -23,12 +23,22 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     
     public int ajouterJetonDansColonne(Jeton jetemp, int col){  //méthode pour ajouter un jeton dans une colonne 
         int ret = -1 ;
-        for(int i = 5; i>=0 ; i--){
-            if (grille[i][col].presenceJeton() == false){ // Dès qu'une cellule de la colonne est vide on peut y placer le jeton 
+        for(int i = 0; i<6 ; i++){
+            if (grille[i][col].presenceJeton() == false && grille[i][col].presenceTrouNoir() == false &&grille[i][col].presenceDesintegrateur() == false){ // Dès qu'une cellule de la colonne est vide on peut y placer le jeton 
                 grille[i][col].affecterJeton(jetemp);  // Donc on affecte le jeton à la cellule
                 ret = i ;
                 break;    // Puis on sort de la boucle afin de ne pas ajouter le même jeton dans les cellules au dessus
             }
+            else if (grille[i][col].presenceTrouNoir() == true) {
+                grille[i][col].supprimerTrouNoir();
+                break;
+            }
+            else if (grille[i][col].presenceDesintegrateur() == true) {
+                grille[i][col].supprimerDesintegrateur();
+                ret = 12;
+                break;
+            }
+            
         }    
         return ret ; // On retourne la ligne à laquelle on a ajouté le jeton si la colonne est pleine on retourne - 1 signifiant qu'on ne peut pas ajouter de jeton dans cette colonne.
     }    
@@ -173,29 +183,20 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     }
     
     public void tasserLigne(int indicCol) {
-        for(int i=5; i>0 ;i--){//on parcourt les lignes de la colonne de bas en haut
-            if(grille[i][indicCol]==null){//si la ligne de la colonne est null
-                grille[i][indicCol]=grille[i-1][indicCol];//alors on invers la ligne du dessus avec la ligne actuelle
-                grille[i-1][indicCol]=null;//et on met la ligne du dessus à null pour que la condition sur la ligne superieuir s'effectue
+        for(int i=0; i<5 ;i++){//on parcourt les lignes de la colonne de bas en haut
+            if(grille[i][indicCol].presenceJeton()== false){//si la ligne de la colonne est null
+                grille[i][indicCol].affecterJeton(grille[i+1][indicCol].recupererJeton());//alors on invers la ligne du dessus avec la ligne actuelle
+                grille[i+1][indicCol].supprimerJeton();//et on met la ligne du dessus à null pour que la condition sur la ligne superieuir s'effectue
                
             }
-        }  
-        
+        }      
     }
-    int temp0 = 0;
+    
     public boolean colonneRemplie (int numColonne) {     //methode permettant de savoir si une colonne est remplie de jetons ou non
-        for (int i=0; i <= 5; i++ ){  //on va se balader sur toute les lignes
-            if (grille [i][numColonne].presenceJeton() == true) { //on regarde si sur chaque case de notre colonne on a la présence d'un jeton
-                temp0 += 1; //si c'est le cas on ajoute 1 à une variable 
-            }
-        }
-        if (temp0 == 7){ // si notre variable est égale à 7 = toute les lignes sont occupées alors on peut renvoyer "true"
-            return true;
-        }
-        else {
-            return false; //sinon cela veut dire qu'il reste de la place et donc on renvoie "false"
-        }
-         
+       if (grille [5][numColonne].presenceJeton() == false || grille[5][numColonne].presenceDesintegrateur()==true || grille[5][numColonne].presenceTrouNoir()==true) { //on regarde si sur chaque case de notre colonne on a la présence d'un jeton
+           return false;
+       }
+       else return true;
     }
     public void placerTrouNoir(int x, int y) {   //méthode permettant de placer un trou noir sur la grille 
         grille[x][y].placerTrouNoir();
@@ -236,6 +237,11 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
 
     public void utiliserDesintegrateur(int i, int i0, joueur joueurCourant) {
         grille[i][i0].supprimerDesintegrateur();
+    }
+    public void tassergrille(){
+        for (int i=1; i<7; i++ ){
+            tasserLigne(i);
+        }
     }
 
     

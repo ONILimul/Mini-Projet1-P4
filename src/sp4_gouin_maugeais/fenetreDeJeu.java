@@ -37,6 +37,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                         if (c.jetonCourant.couleur.equals(joueurCourant.couleur)) {
                             textemessage.setText("Le joueur " + joueurCourant.Nom() + "récupère un jeton");
                             Jeton jrecup = c.recupererJeton();
+                            plateau.tassergrille();
                             joueurCourant.ajouterJeton(jrecup);
                             joueurSuivant();
                         } else {
@@ -50,7 +51,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                                 return;
                             }
                         }
-                        plateau.tasserLigne(NORMAL);
+                        plateau.tassergrille();
                         panneau_grille.repaint();
                         lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + "");
                         lbl_j2_desint.setText(listeJoueurs[1].nombreDesintegrateurs + "");
@@ -327,7 +328,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     public void placerTrousNoirsEtDesintegrateurs() {  //méthode qui va créer 5 trous noirs et désintegrateurs et va cacher certains desintegrateurs derrière des trous noirs
         int i = 0;
-        while (i < 3) {
+        while (i < 2) {
             int x = (int) (Math.random() * (9 - 3)); //on choisi aléatoirement des cases pour placer les trous noirs et desintégrateurs
             int y = (int) (Math.random() * (8 - 3));
             if (plateau.presenceDesintegrateur(x, y) == false) {
@@ -353,7 +354,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
             }
         }
 
-        while (i < 7) {
+        while (i < 8) {
 
             int x = (int) (Math.random() * (9 - 3));
 
@@ -398,11 +399,11 @@ public class fenetreDeJeu extends javax.swing.JFrame {
     public void initialiserPartie() {   //Méthode faisant appels à toutes celles créées dernièrement afin d'initialiser la partie 
 
         String nomJ1 = Nom_joueur1.getText(); // On a une variable qui prend la valeur rentrée dans le texte field 
-        String nomJ2 = Nom_joueur2.getText();
+        String nomJ2 = Nom_Joueur2.getText();
         
         joueur J1 = new joueur(nomJ1);//Ainsi on crée nos joueurs avec leur nom 
         joueur J2 = new joueur(nomJ2);
-
+        
         listeJoueurs[0] = J1;
         listeJoueurs[1] = J2;
 
@@ -422,6 +423,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         joueurCourant = listeJoueurs[0];
         lbl_jcourant.setText(joueurCourant.Nom()); // Voir le joueur courant
         placerTrousNoirsEtDesintegrateurs();
+        plateau.afficherGrilleSurConsole();
         
 
     }//GEN-LAST:event_btn_startActionPerformed
@@ -496,6 +498,9 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         int resultatAction;
 
         resultatAction = plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(), indice_colonne);
+        if (resultatAction == 12){
+            joueurCourant.obtenirDesintegrateur();
+        }
         panneau_grille.repaint();
 
         lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + "");
