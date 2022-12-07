@@ -13,49 +13,44 @@ import javax.swing.JButton;
  * @author thoma
  */
 public class CelluleGraphique extends JButton { // on crée une nouvelle classe 
-    
+
     CelluleDeGrille celluleAssociee; // attribut de la classe 
-    
+
     ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/images/celluleVide.png"));
     ImageIcon img_desint = new javax.swing.ImageIcon(getClass().getResource("/images/desintegrateur.png"));
     ImageIcon img_jetonJaune = new javax.swing.ImageIcon(getClass().getResource("/images/jetonJaune.png"));
     ImageIcon img_jetonRouge = new javax.swing.ImageIcon(getClass().getResource("/images/jetonRouge.png"));
-    ImageIcon img_trouNoir = new javax.swing.ImageIcon(getClass().getResource("/images/trouNoir.png")); 
-  
-    
-    
-    
-    public CelluleGraphique(CelluleDeGrille uneCellule){ //Constructeur de CelluleGraphique
+    ImageIcon img_trouNoir = new javax.swing.ImageIcon(getClass().getResource("/images/trouNoir.png"));
+
+    public CelluleGraphique(CelluleDeGrille uneCellule) { //Constructeur de CelluleGraphique
         celluleAssociee = uneCellule;
     }
-    
+
     @Override
-    public void paintComponent (Graphics G){
+    public void paintComponent(Graphics G) {
         super.paintComponent(G);
-        if(celluleAssociee.presenceTrouNoir() == true) {// si trou noir on affiche limage correspondante
+        if (celluleAssociee.presenceTrouNoir() == true) {// si trou noir on affiche limage correspondante
             setIcon(img_trouNoir);
-        }
-        else{
-            if(celluleAssociee.presenceDesintegrateur() == true) {// de meme avec le desintegrateur
+        } else {
+            if (celluleAssociee.presenceDesintegrateur() == true) {// de meme avec le desintegrateur
                 setIcon(img_desint);
-            }
-            else{
+            } else {
                 String couleur_jeton = celluleAssociee.lireCouleurDuJeton(); // on note la couleur du jeton si il y en a un
-                switch (couleur_jeton){
-                    case ".": // et en fonction on affiche limage correspondante
+                switch (couleur_jeton) {
+                    case "vide": // et en fonction on affiche limage correspondante
                         setIcon(img_vide);
                         break;
-                    case "rouge" : 
+                    case "Rouge":
                         setIcon(img_jetonRouge);
                         break;
-                    case "jaune" : 
+                    case "Jaune":
                         setIcon(img_jetonJaune);
                         break;
                 }
-                
+
             }
         }
         setIcon(img_vide); // On attribue l'image CelluleVide.png
     }
-    
+
 }

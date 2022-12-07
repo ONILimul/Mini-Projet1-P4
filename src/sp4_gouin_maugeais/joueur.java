@@ -20,8 +20,8 @@ public class joueur { // Création de la classe joueur
         nombreDesintegrateurs = 0;
     }
     
-    public String Nom(String nomJ){
-        return nomJ;
+    public String Nom(){
+        return nom;
     }
     
     public void affecterCouleur (String color) {   //Méthode permettant de d'affecter à un joueur une couleur (ici entre rouge et jaune)
@@ -37,7 +37,8 @@ public class joueur { // Création de la classe joueur
     
     public Jeton jouerJeton(){    //méthode permettant de retirer un jeton de la réserve du joueur et de renvoyer une référence à celui-ci
         
-        Jeton j = reserveJetons.remove(0);
+        Jeton j = reserveJetons.get(0);
+        reserveJetons.remove(0);
         return j;
       
     }

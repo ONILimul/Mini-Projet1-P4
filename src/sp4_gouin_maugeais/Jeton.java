@@ -10,7 +10,7 @@ package sp4_gouin_maugeais;
  */
 public class Jeton {// Création de notre classe jeton 
     
-    private String couleur;             //Attributs définissant la couleur du jeton. On attribue une couleur à la construction du jeton 
+    String couleur;             //Attributs définissant la couleur du jeton. On attribue une couleur à la construction du jeton 
 
     public Jeton(String couleur) { //Constructeur du jeton dans lequel on attribue une couleur au jeton que l'on construit 
         this.couleur = couleur;

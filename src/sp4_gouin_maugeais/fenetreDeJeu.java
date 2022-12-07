@@ -12,7 +12,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     joueur[] listeJoueurs = new joueur[2];
     joueur joueurCourant;
-    PlateauDeJeu plateau;
+    PlateauDeJeu plateau = new PlateauDeJeu();
 
     /**
      * Creates new form fenetreDeJeu
@@ -35,13 +35,13 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                         }
 
                         if (c.jetonCourant.couleur.equals(joueurCourant.couleur)) {
-                            textemessage.setText("Le joueur " + joueurCourant.nom + "récupère un jeton");
+                            textemessage.setText("Le joueur " + joueurCourant.Nom() + "récupère un jeton");
                             Jeton jrecup = c.recupererJeton();
                             joueurCourant.ajouterJeton(jrecup);
                             joueurSuivant();
                         } else {
                             if (joueurCourant.nombreDesintegrateurs > 0) {
-                                textemessage.setText("Le joueur " + joueurCourant.nom + "desintégre un jeton");
+                                textemessage.setText("Le joueur " + joueurCourant.Nom() + "desintégre un jeton");
                                 c.supprimerJeton();
                                 joueurCourant.utiliserDesintegrateur();
                                 joueurSuivant();
@@ -59,17 +59,17 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                         boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1].couleur);
 
                         if (vict_j1 && !vict_j2) {
-                            textemessage.setText("Victoire de " + listeJoueurs[0].nom);
+                            textemessage.setText("Victoire de " + listeJoueurs[0].Nom());
                         }
                         if (vict_j2 && !vict_j1) {
-                            textemessage.setText("Victoire de " + listeJoueurs[1].nom);
+                            textemessage.setText("Victoire de " + listeJoueurs[1].Nom());
                         }
 
                         if (vict_j1 && vict_j2) {
                             if (joueurCourant == listeJoueurs[0]) {
-                                textemessage.setText("Victoire de " + listeJoueurs[1].nom + " (faute de jeu de l'autre joueur)");
+                                textemessage.setText("Victoire de " + listeJoueurs[1].Nom() + " (faute de jeu de l'autre joueur)");
                             } else {
-                                textemessage.setText("Victoire de " + listeJoueurs[0].nom + " (faute de jeu de l'autre joueur)");
+                                textemessage.setText("Victoire de " + listeJoueurs[0].Nom() + " (faute de jeu de l'autre joueur)");
                             }
                         }
                     }
@@ -310,75 +310,47 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     public void creerEtAffecterJeton(joueur j1) {  //méthode qui va créer 30 objets de type Jeton pour chaque couleur et les donnes aux joueurs
 
-        if ("rouge".equals(j1.getCouleur())) {
-
+        if ("Rouge".equals(j1.getCouleur())) {
             for (int i = 0; i < 31; i++) { //on créer une boucle pour créer les 30 jetons pour le joueur rouge
-
-                Jeton jeton = new Jeton("rouge");
-
+                Jeton jeton = new Jeton("Rouge");
                 j1.ajouterJeton(jeton);
-
             }
         }
 
-        if ("jaune".equals(j1.getCouleur())) { //on créer une boucle pour créer les 30 jetons pour le joueur jaune
-
+        if ("Jaune".equals(j1.getCouleur())) { //on créer une boucle pour créer les 30 jetons pour le joueur jaune
             for (int i = 0; i < 31; i++) {
-
-                Jeton jeton = new Jeton("jaune");
-
+                Jeton jeton = new Jeton("Jaune");
                 j1.ajouterJeton(jeton);
-
             }
-
         }
-
     }
 
     public void placerTrousNoirsEtDesintegrateurs() {  //méthode qui va créer 5 trous noirs et désintegrateurs et va cacher certains desintegrateurs derrière des trous noirs
-
         int i = 0;
-
         while (i < 3) {
-
             int x = (int) (Math.random() * (9 - 3)); //on choisi aléatoirement des cases pour placer les trous noirs et desintégrateurs
-
             int y = (int) (Math.random() * (8 - 3));
-
             if (plateau.presenceDesintegrateur(x, y) == false) {
-
                 if (plateau.presenceTrouNoir(x, y) == false) {
-
                     plateau.placerTrouNoir(x, y);
-
                     plateau.placerDesintegrateur(x, y);
 
                     i += 1;
 
                 }
-
             }
-
         }
 
         while (i < 5) {  //on répète cette étape jusqu'a ce que le bon nombre de trou noirs et désintégrateurs soit présent
-
             int x = (int) (Math.random() * (9 - 3));
-
             int y = (int) (Math.random() * (8 - 3));
-
             if (plateau.presenceDesintegrateur(x, y) == false) {
-
                 if (plateau.presenceTrouNoir(x, y) == false) {
-
                     plateau.placerTrouNoir(x, y);
-
                     i += 1;
 
                 }
-
             }
-
         }
 
         while (i < 7) {
@@ -409,15 +381,15 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
         if (valeur == 0) { //si le chiffre est 0, l'un des joueurs sera rouge et l'autre jaune
 
-            listeJoueurs[0].affecterCouleur("rouge");
+            listeJoueurs[0].affecterCouleur("Rouge");
 
-            listeJoueurs[1].affecterCouleur("jaune");
+            listeJoueurs[1].affecterCouleur("Jaune");
 
         } else {  //si le chiffre est 1, l'ordre des couleurs est inversé
 
-            listeJoueurs[0].affecterCouleur("jaune");
+            listeJoueurs[0].affecterCouleur("Jaune");
 
-            listeJoueurs[1].affecterCouleur("rouge");
+            listeJoueurs[1].affecterCouleur("Rouge");
 
         }
 
@@ -427,7 +399,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
         String nomJ1 = Nom_joueur1.getText(); // On a une variable qui prend la valeur rentrée dans le texte field 
         String nomJ2 = Nom_joueur2.getText();
-
+        
         joueur J1 = new joueur(nomJ1);//Ainsi on crée nos joueurs avec leur nom 
         joueur J2 = new joueur(nomJ2);
 
@@ -443,13 +415,14 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         lbl_j1_desint.setText(J1.getNombreDesintegrateurs() + "");
         lbl_j2_desint.setText(J2.getNombreDesintegrateurs() + "");
 
-        lbl_jcourant.setText(joueurCourant.nom); // Voir le joueur courant
+        
 
         creerEtAffecterJeton(listeJoueurs[1]);
-
         creerEtAffecterJeton(listeJoueurs[0]);
-
+        joueurCourant = listeJoueurs[0];
+        lbl_jcourant.setText(joueurCourant.Nom()); // Voir le joueur courant
         placerTrousNoirsEtDesintegrateurs();
+        
 
     }//GEN-LAST:event_btn_startActionPerformed
 
@@ -520,7 +493,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         joueurSuivant();
     }//GEN-LAST:event_btn_col_6ActionPerformed
     public boolean jouerDansColonne(int indice_colonne) {
-        boolean resultatAction;
+        int resultatAction;
 
         resultatAction = plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(), indice_colonne);
         panneau_grille.repaint();
@@ -532,24 +505,24 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1].couleur);
 
         if (vict_j1 && !vict_j2) {
-            textemessage.setText("Victoire de " + listeJoueurs[0].nom);
+            textemessage.setText("Victoire de " + listeJoueurs[0].Nom());
         }
         if (vict_j2 && !vict_j1) {
-            textemessage.setText("Victoire de " + listeJoueurs[1].nom);
+            textemessage.setText("Victoire de " + listeJoueurs[1].Nom());
         }
 
         if (vict_j1 && vict_j2) {
             if (joueurCourant == listeJoueurs[0]) {
-                textemessage.setText("Victoire de " + listeJoueurs[1].nom + " (faute de jeu de l'autre joueur)");
+                textemessage.setText("Victoire de " + listeJoueurs[1].Nom() + " (faute de jeu de l'autre joueur)");
             } else {
-                textemessage.setText("Victoire de " + listeJoueurs[0].nom + " (faute de jeu de l'autre joueur)");
+                textemessage.setText("Victoire de " + listeJoueurs[0].Nom() + " (faute de jeu de l'autre joueur)");
             }
         }
 
-        if (resultatAction == true) {
-            return true;
-        } else {
+        if (resultatAction != -1) {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -559,7 +532,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         } else {
             joueurCourant = listeJoueurs[0];
         }
-        lbl_jcourant.setText(joueurCourant.nom);
+        lbl_jcourant.setText(joueurCourant.Nom());
 
     }
 

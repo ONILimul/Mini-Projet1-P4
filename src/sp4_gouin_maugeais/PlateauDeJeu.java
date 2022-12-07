@@ -24,7 +24,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     public int ajouterJetonDansColonne(Jeton jetemp, int col){  //méthode pour ajouter un jeton dans une colonne 
         int ret = -1 ;
         for(int i = 5; i>=0 ; i--){
-            if (grille[i][col]==null){ // Dès qu'une cellule de la colonne est vide on peut y placer le jeton 
+            if (grille[i][col].presenceJeton() == false){ // Dès qu'une cellule de la colonne est vide on peut y placer le jeton 
                 grille[i][col].affecterJeton(jetemp);  // Donc on affecte le jeton à la cellule
                 ret = i ;
                 break;    // Puis on sort de la boucle afin de ne pas ajouter le même jeton dans les cellules au dessus
@@ -184,7 +184,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
     }
     int temp0 = 0;
     public boolean colonneRemplie (int numColonne) {     //methode permettant de savoir si une colonne est remplie de jetons ou non
-        for (int i=0; i <= 6; i++ ){  //on va se balader sur toute les lignes
+        for (int i=0; i <= 5; i++ ){  //on va se balader sur toute les lignes
             if (grille [i][numColonne].presenceJeton() == true) { //on regarde si sur chaque case de notre colonne on a la présence d'un jeton
                 temp0 += 1; //si c'est le cas on ajoute 1 à une variable 
             }

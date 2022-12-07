@@ -33,12 +33,8 @@ public class CelluleDeGrille {     // Création de la classe CelluleDeGrille
         }
     }
     
-    boolean affecterJeton(Jeton jeton){   // Setter pour affecter un jeton à une cellule
-        if(jetonCourant==null){
-            jetonCourant = jeton ;
-            return true;
-        }
-        return false;
+    public void affecterJeton(Jeton jeton){   // Setter pour affecter un jeton à une cellule
+        this.jetonCourant = jeton;
     }
     
     String lireCouleurDuJeton(){// on lit la couleur du jeton actuel dans la cellule 
