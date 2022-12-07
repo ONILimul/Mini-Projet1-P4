@@ -239,7 +239,7 @@ public class PlateauDeJeu { // Création classe Plateau de jeu
         grille[i][i0].supprimerDesintegrateur();
     }
     public void tassergrille(){
-        for (int i=1; i<7; i++ ){
+        for (int i=0; i<6; i++ ){
             tasserLigne(i);
         }
     }
