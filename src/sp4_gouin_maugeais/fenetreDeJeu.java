@@ -28,14 +28,14 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                 CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]); //On récupère la cellule de plateau et on la passe en parametre pour "CelluleGraphique" 
 
                 cellGraph.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) { //on créer une portion de code afin de pouvoir enlever et desintegrer des jetons juste en cliquant dessus
                         CelluleDeGrille c = cellGraph.celluleAssociee;
-                        if (c.jetonCourant == null) {
+                        if (c.jetonCourant == null) { 
                             return;
                         }
 
                         if (c.jetonCourant.couleur.equals(joueurCourant.couleur)) {
-                            textemessage.setText("Le joueur " + joueurCourant.Nom() + "récupère un jeton");
+                            textemessage.setText("Le joueur " + joueurCourant.Nom() + " récupère un jeton");
                             Jeton jrecup = c.recupererJeton();
                             plateau.tassergrille();
                             joueurCourant.ajouterJeton(jrecup);
@@ -51,26 +51,26 @@ public class fenetreDeJeu extends javax.swing.JFrame {
                                 return;
                             }
                         }
-                        plateau.tassergrille();
+                        plateau.tassergrille(); //on tasse la grille
                         panneau_grille.repaint();
-                        lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + "");
+                        lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + ""); //on mets à jour le texte
                         lbl_j2_desint.setText(listeJoueurs[1].nombreDesintegrateurs + "");
 
                         boolean vict_j1 = plateau.GagnantePourCouleur(listeJoueurs[0].couleur);
                         boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1].couleur);
 
-                        if (vict_j1 && !vict_j2) {
-                            textemessage.setText("Victoire de " + listeJoueurs[0].Nom());
+                        if (vict_j1 && !vict_j2) { //on teste les conditions de victoires 
+                            textemessage.setText("Victoire de " + listeJoueurs[0].Nom()); //on affiche u message de victoire
                         }
                         if (vict_j2 && !vict_j1) {
-                            textemessage.setText("Victoire de " + listeJoueurs[1].Nom());
+                            textemessage.setText("Victoire de " + listeJoueurs[1].Nom());//on affiche u message de victoire
                         }
 
-                        if (vict_j1 && vict_j2) {
+                        if (vict_j1 && vict_j2) { //on prends en compte les nouvelles conditions de victoires qui peuventa arriver avec les nouvelles fonctionnalités
                             if (joueurCourant == listeJoueurs[0]) {
-                                textemessage.setText("Victoire de " + listeJoueurs[1].Nom() + " (faute de jeu de l'autre joueur)");
+                                textemessage.setText("Victoire de " + listeJoueurs[1].Nom() + " (faute de jeu de l'autre joueur)"); //on affiche donc un message avec la raison de la victoire 
                             } else {
-                                textemessage.setText("Victoire de " + listeJoueurs[0].Nom() + " (faute de jeu de l'autre joueur)");
+                                textemessage.setText("Victoire de " + listeJoueurs[0].Nom() + " (faute de jeu de l'autre joueur)"); //on affiche donc un message avec la raison de la victoire 
                             }
                         }
                     }
@@ -303,7 +303,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         // TODO add your handling code here:
         panneau_info_joueurs.setVisible(true); // Dès que l'on active le bouton débuter partie, on affiche les deux pannels cachés au début de la partie 
         panneau_info_partie.setVisible(true);
-        initialiserPartie();
+        initialiserPartie(); //on mets les paramètres à jour en initialisant la partie
         panneau_grille.repaint();
         btn_start.setEnabled(false);
 
@@ -434,7 +434,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
         // TODO add your handling code here:
-        jouerDansColonne(0);
+        jouerDansColonne(0); //on gère les actions que réalisent le bouton lorsqu'on clique dessus
         if (plateau.colonneRemplie(0) == true) {
             btn_col_0.setEnabled(false);
         }
@@ -443,7 +443,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void btn_col_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_1ActionPerformed
         // TODO add your handling code here:
-        jouerDansColonne(1);
+        jouerDansColonne(1);//on gère les actions que réalisent le bouton lorsqu'on clique dessus
         if (plateau.colonneRemplie(1) == true) {
             btn_col_1.setEnabled(false);
         }
@@ -452,7 +452,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void btn_col_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_2ActionPerformed
         // TODO add your handling code here:
-        jouerDansColonne(2);
+        jouerDansColonne(2);//on gère les actions que réalisent le bouton lorsqu'on clique dessus
         if (plateau.colonneRemplie(2) == true) {
             btn_col_2.setEnabled(false);
         }
@@ -461,7 +461,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void btn_col_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_3ActionPerformed
         // TODO add your handling code here:
-        jouerDansColonne(3);
+        jouerDansColonne(3);//on gère les actions que réalisent le bouton lorsqu'on clique dessus
         if (plateau.colonneRemplie(3) == true) {
             btn_col_3.setEnabled(false);
         }
@@ -470,7 +470,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void btn_col_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_4ActionPerformed
         // TODO add your handling code here:
-        jouerDansColonne(4);
+        jouerDansColonne(4);//on gère les actions que réalisent le bouton lorsqu'on clique dessus
         if (plateau.colonneRemplie(4) == true) {
             btn_col_4.setEnabled(false);
         }
@@ -479,7 +479,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void btn_col_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_5ActionPerformed
         // TODO add your handling code here:
-        jouerDansColonne(5);
+        jouerDansColonne(5);//on gère les actions que réalisent le bouton lorsqu'on clique dessus
         if (plateau.colonneRemplie(5) == true) {
             btn_col_5.setEnabled(false);
         }
@@ -488,7 +488,7 @@ public class fenetreDeJeu extends javax.swing.JFrame {
 
     private void btn_col_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_6ActionPerformed
         // TODO add your handling code here:
-        jouerDansColonne(6);
+        jouerDansColonne(6);//on gère les actions que réalisent le bouton lorsqu'on clique dessus
         if (plateau.colonneRemplie(6) == true) {
             btn_col_6.setEnabled(false);
         }
@@ -501,26 +501,26 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         if (resultatAction == 12){
             joueurCourant.obtenirDesintegrateur();
         }
-        panneau_grille.repaint();
+        panneau_grille.repaint(); //on rafraîchit l'affichage de l'interface graphique 
 
-        lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + "");
+        lbl_j1_desint.setText(listeJoueurs[0].nombreDesintegrateurs + "");//on mets à jour le nombre de désintégrateur sur l'interface graphique 
         lbl_j2_desint.setText(listeJoueurs[1].nombreDesintegrateurs + "");
 
         boolean vict_j1 = plateau.GagnantePourCouleur(listeJoueurs[0].couleur);
         boolean vict_j2 = plateau.GagnantePourCouleur(listeJoueurs[1].couleur);
 
-        if (vict_j1 && !vict_j2) {
-            textemessage.setText("Victoire de " + listeJoueurs[0].Nom());
+        if (vict_j1 && !vict_j2) { //on teste les conditions de victoires 
+            textemessage.setText("Victoire de " + listeJoueurs[0].Nom()); //on affiche un message de victoire lorsqu'un joueur gagne
         }
         if (vict_j2 && !vict_j1) {
-            textemessage.setText("Victoire de " + listeJoueurs[1].Nom());
+            textemessage.setText("Victoire de " + listeJoueurs[1].Nom()); //on affiche un message de victoire lorsqu'un joueur gagne
         }
 
         if (vict_j1 && vict_j2) {
             if (joueurCourant == listeJoueurs[0]) {
-                textemessage.setText("Victoire de " + listeJoueurs[1].Nom() + " (faute de jeu de l'autre joueur)");
+                textemessage.setText("Victoire de " + listeJoueurs[1].Nom() + " (faute de jeu de l'autre joueur)");//on affiche un message de victoire lorsqu'un joueur gagne et on explique pourquoi
             } else {
-                textemessage.setText("Victoire de " + listeJoueurs[0].Nom() + " (faute de jeu de l'autre joueur)");
+                textemessage.setText("Victoire de " + listeJoueurs[0].Nom() + " (faute de jeu de l'autre joueur)");//on affiche un message de victoire lorsqu'un joueur gagne et on explique pourquoi
             }
         }
 
@@ -531,13 +531,13 @@ public class fenetreDeJeu extends javax.swing.JFrame {
         }
     }
 
-    public void joueurSuivant() {
-        if (joueurCourant == listeJoueurs[0]) {
+    public void joueurSuivant() { //méthode permettant de passer au joueur suivant
+        if (joueurCourant == listeJoueurs[0]) { //après qu'un joueur joue , on passe au suivant
             joueurCourant = listeJoueurs[1];
         } else {
             joueurCourant = listeJoueurs[0];
         }
-        lbl_jcourant.setText(joueurCourant.Nom());
+        lbl_jcourant.setText(joueurCourant.Nom());//on mets à jour l'affichage du joueur en question qui joue
 
     }
 
